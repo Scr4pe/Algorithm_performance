@@ -1,4 +1,5 @@
 import time
+import random
 
 confirmation_text = "Do you want to start this script:\n[y or Y] + Enter"
 welcome = "\n\nWelcome to Algorithm performance."
@@ -6,11 +7,12 @@ P_create = "Create Random array"
 P_start_ = "Starting Algorithm"
 P_finish_selection = ""
 P_exit = "\n\nThank you for using this product."
-to_sort = []
 global counter
 counter = 0
 rank = []
-
+random_list = []
+sorted_list = []
+shuffled_list = []
 # Standard algo blueprint
 # 1. print(started)
 # 2. sort by algorithm
@@ -20,9 +22,26 @@ rank = []
 # 3.2.1 break up this Algo
 # 4. print("This Algo X is done (1/8)")
 
+
+# Create array
+for i in range(1,5):
+    random_list.append(i)
+    sorted_list.append(i)
+    shuffled_list.append(i)
+shuffle_list = list(zip(random_list,shuffled_list))
+random.shuffle(shuffle_list)
+random_list,shuffled_list = zip(*shuffle_list)
+
 # Selection
 def selection_algo():
     print()
+    # check if the algo worked
+    if sorted_list == random_list:
+        print("Algo worked")
+    else:
+        print("Algo didnt worked")
+    # reset random_list
+    random_list = shuffled_list
 
 # Bubble
 def bubble_algo():
