@@ -46,7 +46,8 @@ for i in range(1,100):
 shuffle_list = list(zip(random_list,shuffled_list))
 random.shuffle(shuffle_list)
 random_list,shuffled_list = zip(*shuffle_list)
-
+shuffle_list = list(shuffle_list)
+random_list = list(random_list)
 
 # Selection
 def selection_algo(random_list):
@@ -59,7 +60,12 @@ def selection_algo(random_list):
     start = time.time()
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    for i in range(len(random_list)):
+        mindmin = i
+        for j in range(i + 1,len(random_list)):
+            if random_list[mindmin] > random_list[j]:
+                mindmin = j
+    random_list[i], random_list[mindmin] = random_list[mindmin], random_list[i]
     # >>
     end = time.time()
     sel_diff = round(end - start,ndigits=4)
