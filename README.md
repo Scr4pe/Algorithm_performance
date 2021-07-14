@@ -3,7 +3,11 @@
 ## Requirements
 Python 3
 
-## Included Algorithms
+with modules like
+- time
+- random
+
+## Included Algorithms and how they work
 - Selection
 - Bubble
 - Insertion
