@@ -205,7 +205,7 @@ def merge_algo(random_list,sorted_list):
 
 # Quick
 """ Description of the Quick Algo
-    This 
+    This algo is 
 """
 def quick_algo(random_list,sorted_list):
     # set difference in time later as float to global
