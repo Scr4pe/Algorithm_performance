@@ -125,7 +125,8 @@ def bubble_algo(random_list,sorted_list):
 
 # Insertion Algo
 """ Description of the Insertion Algo
-
+    This algo works with an Sorted and Un-Sorted list. Sorted list is list [0] and Un_sorted list is the rest.
+    Next element after Sorted list is key and will be compaired from right to left (in Sorted list) to paste the variable in the right order (ascending).
 """
 # Insertion
 def insertion_algo(random_list,sorted_list):
@@ -139,7 +140,7 @@ def insertion_algo(random_list,sorted_list):
     ins_diff = 0
     ins_com = 0
     ins_acc = 0
-    n = len(random_list)
+    n = range(1,len(random_list))
     P_name = "Insertion"
     # create a border
     print(len(P_name + P_Algo_init) * "#")
@@ -147,7 +148,18 @@ def insertion_algo(random_list,sorted_list):
     start = time.time()
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    for i in n:
+        key = random_list[i]
+        j = i - 1
+        # actual swap
+        while j >= 0 and key < random_list[j]:
+            random_list[j + 1] = arr[j]
+            j -= 1
+        # no swap
+        else:
+            ins_acc += 2
+            ins_com += 1
+        random_list[j+1] = key
     # >>
     end = time.time()
     ins_diff = round(end - start,ndigits=4)
