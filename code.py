@@ -153,7 +153,7 @@ def insertion_algo(random_list,sorted_list):
         j = i - 1
         # actual swap
         while j >= 0 and key < random_list[j]:
-            random_list[j + 1] = arr[j]
+            random_list[j + 1] = random_list[j]
             j -= 1
         # no swap
         else:
@@ -199,7 +199,46 @@ def merge_algo(random_list,sorted_list):
     start = time.time()
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    # find middle point in list
+    middle = len(random_list)//2
+    # divide list in before middle
+    L = random_list[:middle]
+    # divide list in after middle
+    R = random_list[middle:]
+    # sort first half
+    """
+    Problem with doing this function to often
+    """
+    #merge_algo(sorted_list,L)
+    # sort the second half
+    #merge_algo(sorted_list,R)
+    # set variables to zero
+    i = j = k = 0
+    # Copy data to temp random_listays L[] and R[]
+    while i < len(L) and j < len(R):
+        if L[i] < R[j]:
+            random_list[k] = L[i]
+            i += 1
+        else:
+            random_list[k] = R[j]
+            j += 1
+        k += 1
+
+    # Checking if any element was left
+    while i < len(L):
+        random_list[k] = L[i]
+        i += 1
+        k += 1
+
+    while j < len(R):
+        random_list[k] = R[j]
+        j += 1
+        k += 1
+
+
+#    random_list = sorted(random_list)
+
+
     # >>
     end = time.time()
     mer_diff = round(end - start,ndigits=4)
