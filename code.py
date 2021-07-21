@@ -256,7 +256,7 @@ def merge_algo(random_list,sorted_list):
 
 # Quick
 """ Description of the Quick Algo
-    This algo is 
+    This algo starts with random_list[0] as pivot. And if random_list[1] is bigger as random_list[0] will be saved as item_greater. If not item_lower.
 """
 def quick_algo(random_list,sorted_list):
     # set difference in time later as float to global
