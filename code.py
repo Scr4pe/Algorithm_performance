@@ -19,7 +19,7 @@ sorted_list = []
 shuffled_list = []
 
 # Create list and shuffle each other on the same way, so every algo has the same shuffled list 
-for i in range(1,1000):
+for i in range(1,10000):
     random_list.append(i)
     sorted_list.append(i)
     shuffled_list.append(i)
@@ -206,9 +206,6 @@ def merge_algo(random_list,sorted_list):
     # divide list in after middle
     R = random_list[middle:]
     # sort first half
-    """
-    Problem with doing this function to often
-    """
     #merge_algo(sorted_list,L)
     # sort the second half
     #merge_algo(sorted_list,R)
@@ -234,14 +231,7 @@ def merge_algo(random_list,sorted_list):
         random_list[k] = R[j]
         j += 1
         k += 1
-
-
-#    random_list = sorted(random_list)
-
-
     # >>
-    end = time.time()
-    mer_diff = round(end - start,ndigits=4)
     print(P_name + P_Algo_finished)
     # check if the result is correct
     if sorted_list == random_list:
@@ -472,7 +462,10 @@ def main():
         print("---accesses %s---"%(ins_acc))
         print("---compairments %s---"%(ins_com))
 
+        start = time.time()
         merge_algo(random_list,sorted_list)
+        end = time.time()
+        mer_diff = round(end - start,ndigits=4)
         print("---seconds %s---"%(mer_diff))
         print("---accesses %s---"%(mer_acc))
         print("---compairments %s---"%(mer_com))
