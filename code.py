@@ -12,6 +12,11 @@ P_name = ""
 P_Algo_init = " Algo has started"
 P_Algo_finished = " Algo is finished"
 
+global access
+global compair
+access = 0
+compair = 0
+
 # lists
 rank = []
 random_list = []
@@ -248,7 +253,7 @@ def merge_algo(random_list,sorted_list):
 """ Description of the Quick Algo
     This algo starts with random_list[0] as pivot. And if random_list[1] is bigger as random_list[0] will be saved as item_greater. If not item_lower.
 """
-def quick_algo(random_list,sorted_list):
+def quick_algo(random_list, access, compair):
     # set difference in time later as float to global
     global qui_diff
     # set comparison in sorting as global
@@ -267,9 +272,25 @@ def quick_algo(random_list,sorted_list):
     start = time.time()
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    length = len(sequence)
+    if length <= 1:
+        return sequence
+    else:
+        pivot = sequence.pop()
+    items_greater = []
+    items_lower = []
+    access = access + 1
+    for item in sequence:
+        if item > pivot:
+            items_greater.append(item)
+            access += 1
+            compair += 2
+        else:
+            items_lower.append(item)
+            access += 1
+            compair += 2
+    return quick(items_lower, access, compair) + [pivot] + quick(items_greater, access, compair)
     # >>
-    end = time.time()
     qui_diff = round(end - start,ndigits=4)
     print(P_name + P_Algo_finished)
     # check if the result is correct
@@ -470,7 +491,10 @@ def main():
         print("---accesses %s---"%(mer_acc))
         print("---compairments %s---"%(mer_com))
 
-        quick_algo(random_list,sorted_list)
+        start = time.time()
+        print(quick_algo(random_list, access, compair))
+        end = time.time()
+        qui_diff = round(end - start,ndigits=4)
         print("---seconds %s---"%(qui_diff))
         print("---accesses %s---"%(qui_acc))
         print("---compairments %s---"%(qui_com))
