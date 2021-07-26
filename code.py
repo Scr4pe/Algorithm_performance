@@ -9,7 +9,7 @@ P_start_ = "Starting Algorithm"
 P_finish_selection = ""
 P_exit = "\n\nThank you for using this product."
 P_name = ""
-P_Algo_init = " Algo has started"
+P_Algo_text = " Algo has started"
 P_Algo_finished = " Algo is finished"
 
 global access
@@ -17,6 +17,7 @@ global compair
 access = 0
 compair = 0
 
+mer_diff = 0
 # lists
 rank = []
 random_list = []
@@ -33,6 +34,30 @@ random.shuffle(shuffle_list)
 random_list,shuffled_list = zip(*shuffle_list)
 shuffle_list = list(shuffle_list)
 random_list = list(random_list)
+
+# before algo has begun
+def text_start():
+    n = len(random_list)
+    # create a border
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
+
+# after algo is finished
+def text_end(random_list,sorted_list):
+    print(P_name + P_Algo_finished)
+    # check if the result is correct
+    if sorted_list == random_list:
+        print("Check was successful")
+    else:
+        print("Check was unsuccessful")
+    print("reset random_list")
+    # reset unshuffled list
+    random_list = shuffled_list
+    # create a border
+    print(len(P_name + P_Algo_text) * "#")
+
+
+
 
 # Selection Algo
 """ Description of the Selection Algo
@@ -52,8 +77,8 @@ def selection_algo(random_list,sorted_list):
     sel_acc = 0
     P_name = "Selection"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -82,7 +107,7 @@ def selection_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Bubble Algo
 """ Description of the Bubble Algo
@@ -100,10 +125,8 @@ def bubble_algo(random_list,sorted_list):
     bub_com = 0
     bub_acc = 0
     n = len(random_list)
-    P_name = "Bubble"
-    # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+
+
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -125,7 +148,7 @@ def bubble_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 
 # Insertion Algo
@@ -148,8 +171,8 @@ def insertion_algo(random_list,sorted_list):
     n = range(1,len(random_list))
     P_name = "Insertion"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -178,7 +201,7 @@ def insertion_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Merge
 """ Description of the Merge Algo
@@ -199,8 +222,8 @@ def merge_algo(random_list,sorted_list):
     n = len(random_list)
     P_name = "Merge"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -247,7 +270,7 @@ def merge_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Quick
 """ Description of the Quick Algo
@@ -265,22 +288,15 @@ def quick_algo(random_list, access, compair):
     qui_com = 0
     qui_acc = 0
     n = len(random_list)
-    P_name = "Quick"
-    # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
-    start = time.time()
     # Algorithm sorting area
     # >>
-    length = len(sequence)
-    if length <= 1:
-        return sequence
-    else:
-        pivot = sequence.pop()
+    length = len(random_list)
+    if length >= 1:
+        pivot = random_list.pop()
     items_greater = []
     items_lower = []
     access = access + 1
-    for item in sequence:
+    for item in random_list:
         if item > pivot:
             items_greater.append(item)
             access += 1
@@ -289,20 +305,11 @@ def quick_algo(random_list, access, compair):
             items_lower.append(item)
             access += 1
             compair += 2
-    return quick(items_lower, access, compair) + [pivot] + quick(items_greater, access, compair)
+    random_list = items_lower + [pivot] +items_greater
+    #return quick_algo(items_lower, access, compair) + [pivot] + quick_algo(items_greater, access, compair)
     # >>
-    qui_diff = round(end - start,ndigits=4)
-    print(P_name + P_Algo_finished)
-    # check if the result is correct
-    if sorted_list == random_list:
-        print("Check was successful")
-    else:
-        print("Check was unsuccessful")
-    print("reset random_list")
-    # reset unshuffled list
-    random_list = shuffled_list
-    # create a border
-    print(len(P_name + P_Algo_init) * "#")
+
+    
 
 # Heap
 """ Description of the Heap Algo
@@ -322,8 +329,8 @@ def heap_algo(random_list,sorted_list):
     n = len(random_list)
     P_name = "Heap"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -341,7 +348,7 @@ def heap_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Counting
 """ Description of the Counting Algo
@@ -361,8 +368,8 @@ def counting_algo(random_list,sorted_list):
     n = len(random_list)
     P_name = "Counting"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -380,7 +387,7 @@ def counting_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Radix
 """ Description of the Radix Algo
@@ -400,8 +407,8 @@ def radix_algo(random_list,sorted_list):
     n = len(random_list)
     P_name = "Radix"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -419,7 +426,7 @@ def radix_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Bucket
 """ Description of the Bucket Algo
@@ -439,8 +446,8 @@ def bucket_algo(random_list,sorted_list):
     n = len(random_list)
     P_name = "Bucket"
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
-    print(P_name + P_Algo_init)
+    print(len(P_name + P_Algo_text) * "#")
+    print(P_name + P_Algo_text)
     start = time.time()
     # Algorithm sorting area
     # >>
@@ -458,10 +465,10 @@ def bucket_algo(random_list,sorted_list):
     # reset unshuffled list
     random_list = shuffled_list
     # create a border
-    print(len(P_name + P_Algo_init) * "#")
+    print(len(P_name + P_Algo_text) * "#")
 
 # Main function
-def main():
+def main(random_list,sorted_list):
     print(confirmation_text)
     confirmation = input()
     if confirmation == "y" or confirmation == "Y":
@@ -491,10 +498,17 @@ def main():
         print("---accesses %s---"%(mer_acc))
         print("---compairments %s---"%(mer_com))
 
+        global P_name
+        P_name = "Quick"
         start = time.time()
-        print(quick_algo(random_list, access, compair))
+        text_start()
+        quick_algo(random_list, access, compair)       
         end = time.time()
+        text_end(random_list,sorted_list)
         qui_diff = round(end - start,ndigits=4)
+
+
+        
         print("---seconds %s---"%(qui_diff))
         print("---accesses %s---"%(qui_acc))
         print("---compairments %s---"%(qui_com))
@@ -528,4 +542,4 @@ def main():
         print(P_exit)
 
 if __name__ == "__main__":
-    main()
+    main(random_list,sorted_list)
