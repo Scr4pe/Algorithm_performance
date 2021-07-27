@@ -231,7 +231,7 @@ def quick_algo(random_list, access, compair):
 
 # Heap
 """ Description of the Heap Algo
-
+    This algo starts with building a max_heap. Later the largest item is stored at root of heap and will be replaced with last item in max_heap - 1. This function will be repeated until the heap size is greater than 1. 
 """
 def heap_algo(random_list,sorted_list):
     # set comparison in sorting as global
