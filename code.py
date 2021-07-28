@@ -56,6 +56,20 @@ def text_end(random_list,sorted_list):
     # create a border
     print(len(P_name + P_Algo_text) * "#")
 
+# Heapify is a part of the Heap algo
+def heapify(heap,n,i):
+    max_index = i
+    parent = i
+    left_child = 2 * i + 1
+    right_child = 2 * i + 2
+    if left_child < n and heap[parent] < heap[left_child]:
+        max_index = left_child
+    if right_child < n and heap[max_index] < heap[right_child]:
+        max_index = right_child
+    if max_index != i:
+        heap[i], heap[max_index] = heap[max_index], heap[i]
+        heap = heapify(heap, n , max_index)
+    return heap
 
 
 
@@ -241,17 +255,23 @@ def heap_algo(random_list,sorted_list):
     # set variables to 0
     hea_com = 0
     hea_acc = 0
-    n = len(random_list)
-
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    if len(random_list) <= 1:
+        return random_list
+    else:
+        n = len(random_list)
+        for i in reversed(range(n // 2)):
+            random_list = heapify(random_list,n,i)
+        for i in reversed(range(1,n)):
+            random_list[i], random_list[0] = random_list[0], random_list[i]
+            random_list = heapify(random_list,i,0)
+        return random_list
     # >>
-
 
 # Counting
 """ Description of the Counting Algo
-
+    
 """
 def counting_algo(random_list,sorted_list):
     # set comparison in sorting as global
