@@ -271,7 +271,7 @@ def heap_algo(random_list,sorted_list):
 
 # Counting
 """ Description of the Counting Algo
-    
+    This algo starts with finding max in range. Whose keys lies between a specific range. First counts total variavles and then uses those counts to determine the position of each value in list.
 """
 def counting_algo(random_list,sorted_list):
     # set comparison in sorting as global
