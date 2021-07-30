@@ -310,7 +310,7 @@ def radix_algo(random_list,sorted_list):
 
 # Bucket
 """ Description of the Bucket Algo
-
+    This algo starts with creating buckets and puts elements into them. Then it will apply Insertion sort to sort each bucket after each other. At the end every bucket will be joined together to sort the final result.
 """
 def bucket_algo(random_list,sorted_list):
     # set comparison in sorting as global
