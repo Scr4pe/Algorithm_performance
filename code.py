@@ -284,7 +284,20 @@ def counting_algo(random_list,sorted_list):
     n = len(random_list)
     # Algorithm sorting area
     # >>
-    random_list = sorted(random_list)
+    size = len(random_list)
+    output = [0] * size
+    count = [0] * 10
+    for i in range(0, size):
+        count[random_list[i]] += 1
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+    i = size - 1
+    while i >= 0:
+        output[count[random_list[i]] - 1] = random_list[i]
+        count[random_list[i]] -= 1
+        i -= 1
+    for i in range(0, size):
+        array[i] = output[i]
     # >>
     
 
@@ -300,8 +313,6 @@ def radix_algo(random_list,sorted_list):
     # set variables to 0
     rad_com = 0
     rad_acc = 0
-    n = len(random_list)
-
     # Algorithm sorting area
     # >>
     random_list = sorted(random_list)
